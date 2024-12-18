@@ -1,0 +1,236 @@
+/* Genel Stil Ayarları */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: blueviolet;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    position: absolute;
+    right: 50px;
+    height: 500vh;
+  }
+  
+  h1, h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Tablo Stil Ayarları */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  
+  thead {
+    background-color: #4CAF50;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    color: white;
+  }
+  
+  thead th {
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tbody tr:hover {
+    background-color: #ddd;
+  }
+  
+  tbody td {
+    text-align: left;
+    color: #333;
+  }
+  
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .add-button {
+    background-color: #28a745;
+    color: white;
+    margin-top: 10px;
+    position: absolute;
+    right: 500px;
+  }
+  
+  .classes-button {
+    background-color: #17a2b8;
+    color: white;
+  }
+  
+  .message {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    margin-top: 20px;
+    position: absolute;
+    top: 120px;
+    right: 480px;
+    width: 400px;
+    height: 200px;
+    background-color: blueviolet;
+    animation: slide 1s ease forwards, colorChange 3s infinite alternate, vanish 2s forwards 2s;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .message p{
+    color: white;
+  }
+  
+  .message-container{
+    position: absolute;
+    width: 100%;
+    height: 500vh;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.5); /* Arka plan rengi ve opaklık */
+    backdrop-filter: blur(10px); /* Blur efekti */
+  }
+  
+  /* 
+  @keyframes slide {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes colorChange {
+    0% {
+      color: #28a745;
+    }
+    100% {
+      color: #71f18f;
+    }
+  }
+  
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes vanish {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      display: none;
+    }
+  } */
+  
+  .isVisibleContainer {
+    width: 80%;
+    margin: 0px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    animation: slideInRight 0.5s ease-in-out forwards; /* Animasyonu ekliyoruz */
+  }
+  
+  @keyframes slideOutRight {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+  
+  .isVisibleContainer.hidden {
+    animation: slideOutRight 0.5s ease-in-out forwards; /* Animasyonu ekliyoruz */
+  }
+  
+  .isVisibleContainer button {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 18%;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    height: 35px;
+    right: 150px;
+  }
+  
+  .isVisibleContainer table {
+    margin-top: 20px;
+  }
+  
+  .blur{
+    width: 100%;
+    height: 1000vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Arka plan rengi ve opaklık */
+    backdrop-filter: blur(10px); /* Blur efekti */
+    z-index: 5; /* İçerikten daha altta */
+    margin: 0px;
+    top: 0px;
+  }
+  
+  .CloseButton{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  
+  .ok-button{
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: absolute;
+    top: 270px;
+    justify-content: center;
+    right: 650px !important;
+    width: 75px  !important;
+    height: 50px  !important;
+  }
+  
+  
+  .ok-button:hover {
+    background-color: #0056b3;
+  }

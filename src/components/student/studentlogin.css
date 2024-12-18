@@ -1,0 +1,121 @@
+/* Genel gövde stili */
+body {
+    background-color: #2A363B;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+/* Giriş ekranı için başlık stili */
+.Login-Title {
+    font-size: 36px;
+    font-weight: bolder;
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Giriş formu konteyneri */
+.Login-Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Giriş formu kutusu */
+.Login-Box {
+    width: 100%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    border: 2px solid #ddd;
+    padding: 25px;
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Giriş formu kutusunun üzerine gelindiğinde değişiklikler */
+.Login-Box:hover {
+    border-color: rgb(87, 0, 228);
+}
+
+/* Başlık stili */
+.Login-Box h1 {
+    color: black;
+    font-weight: bolder;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Giriş formu etiketleri */
+.Login-Box label {
+    display: block;
+    color: black;
+    font-weight: bolder;
+    font-size: 14px;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+/* Giriş formu giriş alanları */
+.Login-Box input[type="email"],
+.Login-Box input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    margin-bottom: 15px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Giriş butonu */
+.Login-Box button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(87, 0, 228);
+    color: white;
+    font-weight: bolder;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 1s ease-in-out;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+/* Giriş butonunun üzerine gelindiğinde değişiklik */
+.Login-Box button:hover {
+    background-color: yellowgreen;
+}
+
+/* Sign up bağlantısı */
+.signup-link {
+    color: blue;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Sign up bağlantısının üzerine gelindiğinde değişiklik */
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+/* Giriş kutusuna hover olduğunda, Sign up bağlantısının da rengi değişsin */
+.Login-Box:hover .signup-link {
+    text-decoration: none; /* Hover durumunda alt çizgi görünmeyecek */
+    color: greenyellow;
+}
+
+/* Sign up metninin stili */
+.tosignin {
+    color: black;
+    font-weight: bolder;
+    margin-top: 20px;
+}

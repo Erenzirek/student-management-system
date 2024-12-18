@@ -1,0 +1,83 @@
+/* Genel gövde stili */
+body {
+    background-color: #2A363B;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+/* Öğrenci kayıt formu konteyneri */
+.Student-Register-Container {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: auto; /* Yüksekliği auto yaparak içeriğe göre ayarlama */
+    padding: 25px;
+    margin: 10px auto; /* Merkezde hizalama için margin ayarlandı */
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    background-color: #f9f9f9; /* Arka plan rengi */
+    border-radius: 10px; /* Köşeleri yuvarlatma */
+}
+
+/* Kayıt formu başlığı */
+.Student-Register-Container h1 {
+    font-size: 36px;
+    font-weight: bolder;
+    color: black;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 70px;
+}
+
+/* Form giriş alanları */
+.Student-Register-Container input {
+    margin-bottom: 15px;
+    border: 2px solid #ddd; /* Daha açık renkli sınır */
+    border-radius: 5px; /* Köşe yuvarlatma */
+    padding: 10px; /* İç boşluk */
+    width: 100%; /* Genişlik %100 */
+    box-sizing: border-box; /* Padding ve border'ı toplam genişliğe dahil etme */
+}
+
+/* Kayıt butonu */
+.submit-button {
+    display: flex;
+    justify-content: center;
+}
+
+.submit-button button {
+    width: 80px;
+    padding: 8px;
+    background-color: blueviolet;
+    border-radius: 8px;
+    border: none; /* Border kaldırıldı */
+    color: white;
+    font-weight: bolder;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 1s ease-in-out; /* Yavaş geçiş */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.submit-button button:hover {
+    background-color: yellowgreen;
+}
+
+/* Hata mesajları */
+.Student-Register-Container p {
+    color: red; /* Hata mesajı rengi */
+}
+
+/* Bağlantı stili */
+.Student-Register-Container a {
+    text-decoration: none; /* Alt çizgi yok */
+    color: #007bff; /* Bağlantı rengi */
+    margin-top: 20px; /* Üst boşluk */
+}
+
+.Student-Register-Container a:hover {
+    text-decoration: underline; /* Üzerine gelindiğinde alt çizgi */
+}
