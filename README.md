@@ -19,7 +19,7 @@ Here are some screenshots of the project in action:
 
 ### Login Screen
 
-![Login Screen](images/studentlogin.jpg)
+![Login Screen](images/studentLogin.jpg)
 
 ### Student Dashboard
 
