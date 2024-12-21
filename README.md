@@ -13,6 +13,32 @@ This project is designed to provide an organized, efficient, and user-friendly p
 - **Progress Tracking:** Students can view their grades, assignments, and course progress.
 - **Responsive Design:** The application is fully responsive, ensuring an optimal experience on both desktop and mobile devices.
 
+## Project Images
+
+Here are some screenshots of the project in action:
+
+### Login Screen
+
+![Login Screen](images/login-screen.png)
+
+### Student Dashboard
+
+![Student Dashboard](images/student-dashboard.png)
+
+### Teacher Dashboard
+
+![Teacher Dashboard](images/teacher-dashboard.png)
+
+### Course Management
+
+![Course Management](images/course-management.png)
+
+### Assignment Management
+
+![Assignment Management](images/assignment-management.png)
+
+> **Note:** All images are placeholders. You can replace them with actual images of your project.
+
 ## Tech Stack
 
 - **Frontend:** React.js
