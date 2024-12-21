@@ -5,28 +5,29 @@ import './studentdetails.css';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import Navbar from "./navbar";
 import './topnavbar.css';
-import Classes from "./classes"; // Classes componentini import et
+import Classes from "./classes";
 
-
-const StudentDetails = () => { // Component adını büyük harfle başlat
+const StudentDetails = () => {
   const [students, setStudents] = useState([]);
-  const [studentName, setStudentName] = useState(""); // Kullanıcı adı için state
+  const [studentName, setStudentName] = useState("");
   const location = useLocation();
-  const { email } = location.state || {}; // Giriş yapan kişinin e-postası
+  const { email } = location.state || {};
   const [foundStudentId, setFoundStudentId] = useState(null);
-  const [activeModal, setActiveModal] = useState(null); // Aktif olan modal
+  const [activeModal, setActiveModal] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  // Yeni eklenen test parçası
+  const [instructor, setInstructor] = useState([]);
   const [studentId, setStudentId] = useState(null);
   const [coursesList, setCoursesList] = useState([]);
   const [courses, setCourses] = useState([]);
   const [enrolledCourses, setEnrolledcourses] = useState([]);
   const [message, setMessage] = useState('');
   const [isVisible, setIsVisible] = useState({ courses: false, enrolledCourses: false });
+  const [midterm, setMidterm] = useState('');
+  const [final_exam, setFinalExam] = useState('');
+  const [courseId, setCourseId] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [course, setCourse] = useState(null);
 
   useEffect(() => {
     if (location.state && location.state.id) {
@@ -34,6 +35,35 @@ const StudentDetails = () => { // Component adını büyük harfle başlat
     }
   }, [location.state]);
 
+  useEffect(() => {
+    const fetchCourse = async () => {
+      if (!courseId) return;
+
+      setLoading(true);
+      try {
+        const response = await axios.get(`http://localhost:8800/courses/${courseId}`);
+        console.log("Fetched course data:", response.data);
+        setCourse(response.data.data);
+      } catch (err) {
+        console.error("Error fetching course:", err);
+        setError(err.response?.data?.message || "An error occurred");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourse();
+  }, [courseId]);
+
+    // Sadece course bilgisini konsola yazdırıyoruz
+    useEffect(() => {
+      if (course) {
+        
+        console.log(course); // course verisini konsola yazdırıyoruz
+      }
+    }, [course]);
+    console.log(course);
+  
   const fetchCourses = async () => {
     try {
       const res = await axios.get(`http://localhost:8800/enrollments/${foundStudentId}`);
@@ -60,6 +90,9 @@ const StudentDetails = () => { // Component adını büyük harfle başlat
         studentId,
         courseID,
         enrollment_date,
+        instructor,
+        midterm,
+        final_exam
       });
       setMessage('Enrollment successful.');
       fetchCourses();
@@ -109,24 +142,23 @@ const StudentDetails = () => { // Component adını büyük harfle başlat
     setIsVisible(false);
   };
 
-  useEffect(() => {
-    console.log("Current courses in state:", courses);
-  }, [courses]); // courses değiştiğinde konsola yazdır  
-
-    // Tabloların görünürlüğünü değiştirecek toggle fonksiyonu
   const toggleTable = (section) => {
     setIsVisible((prevState) => ({
       ...prevState,
-      [section]: !prevState[section], // İlgili bölümün görünürlüğünü tersine çevir
+      [section]: !prevState[section],
     }));
   };
-  console.log(foundStudentId);
-  // Test Parça sonu
+
+  useEffect(() => {
+    if (course) {
+      console.log("Course details:", course);
+    }
+  }, [course]);
 
   const getFirstLetterUpperCase = () => {
-    // Eğer studentName boş değilse ilk harfi al ve büyük harfe çevir
     return studentName ? studentName.charAt(0).toUpperCase() : "";
   };
+
   useEffect(() => {
     const fetchAllStudents = async () => {
       try {
@@ -146,152 +178,40 @@ const StudentDetails = () => { // Component adını büyük harfle başlat
   useEffect(() => {
     const student = findStudentByEmail(email);
     if (student) {
-      setFoundStudentId(student.id); // Kullanıcının ID'si
-      setStudentName(student.name);  // Kullanıcının adı
+      setFoundStudentId(student.id);
+      setStudentName(student.name);
     }
   }, [email, students]);
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   const openModal = (modalType) => {
-    setActiveModal(modalType); // Hangi modal'ın açılacağını belirle
+    setActiveModal(modalType);
   };
 
   const closeModal = () => {
-    setActiveModal(null); // Modal'ı kapat
+    setActiveModal(null);
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
-            {/* Test Yeni Ekleme  */}
-      <button onClick={() => toggleTable("courses")}>
-        {isVisible.courses ? "Hide Courses" : "Show Courses"}
-      </button>
-      <button onClick={() => toggleTable("enrolledCourses")}>
-        {isVisible.enrolledCourses ? "Hide Enrolled Courses" : "Show Enrolled Courses"}
-      </button>
-
-    <div>
-
-    {isVisible.courses && (
-          <div className='blur'>
-          <div class="isVisibleContainer">
-              <div>
-                  <h2>Courses</h2>
-                  <button className="CloseButton" onClick={handleClickCloseButton}><p>X</p></button>
-              </div>
-              <table>
-                  <thead>
-                      <tr>
-                          <th>Course ID</th>
-                          <th>Course Name</th>
-                          <th>Description</th>
-                          <th>Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      {courses.map((course) => (
-                          <tr key={course.CourseID}>
-                              <td>{course.CourseID}</td>
-                              <td>{course.CourseName}</td>
-                              <td>{course.Description}</td>
-                              <td>
-                                  <button onClick={() => handleClick(course.CourseName, course.CourseID)}>
-                                      Add
-                                  </button>
-                              </td>
-                          </tr>
-                      ))}
-                  </tbody>
-              </table>
-              
-              {message && (
-                <div className='message-container'>
-                  <p className='message'>{message}</p>
-                  <button className='ok-button' onClick={() => setMessage('')}>
-                    Ok
-                  </button>
-                </div>
-              )}
-          </div>
-      </div>
-      )}
-    </div>
-
-{/* Enrolled Courses Table */}
-      {isVisible.enrolledCourses && (
-        <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '10px' }}>
-        <thead>
-          <tr>
-            <th colSpan="4" style={{ fontSize: '1.5rem', padding: '10px', textAlign: 'center', color: 'black' }}>
-              Your Enrolled Courses
-            </th>
-          </tr>
-          <tr>
-            <th style={{ padding: '8px', border: '1px solid #ddd', color: 'black' }}>Course ID</th>
-            <th style={{ padding: '8px', border: '1px solid #ddd', color: 'black' }}>Course Name</th>
-            <th style={{ padding: '8px', border: '1px solid #ddd', color: 'black' }}>Description</th>
-            <th style={{ padding: '8px', border: '1px solid #ddd', color: 'black' }}>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {coursesList.map((course) => (
-            <tr key={course.courseID} style={{ borderBottom: '1px solid #ddd' }}>
-              <td style={{ padding: '8px', color: 'black' }}>{course.courseID}</td>
-              <td style={{ padding: '8px', color: 'black' }}>{course.courseName}</td>
-              <td style={{ padding: '8px', color: 'black' }}>{course.description}</td>
-              <td style={{ padding: '8px' }}>
-                <button
-                  style={{
-                    padding: '5px 10px',
-                    backgroundColor: '#ff4c4c',
-                    color: '#fff',
-                    border: 'none',
-                    cursor: 'pointer',
-                    borderRadius: '4px',
-                  }}
-                  onClick={() => handleDelete(course.courseID)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colSpan="4" style={{ textAlign: 'center', padding: '10px' }}>
-              <button
-                style={{
-                  padding: '10px 20px',
-                  backgroundColor: '#4CAF50',
-                  color: '#fff',
-                  border: 'none',
-                  cursor: 'pointer',
-                  borderRadius: '4px',
-                }}
-                onClick={handleClickAddButton}
-              >
-                Add Course
-              </button>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-      )}
-    
-
-        {/* Test sonu */}
-
       <Navbar className="navbar" email={email} />
 
       <div className="top-navbar">
-        <h1 className="logo">My App</h1>
+        <h1 className="logo">Student Management System</h1>
         <div className="profile-section">
           <div className="profile-icon" onClick={toggleMenu}>
             <p>{getFirstLetterUpperCase()}</p>
           </div>
           {menuOpen && (
             <div className="dropdown-menu">
-              <p>Hoş geldin, {studentName}!</p> {/* studentName burada kullanılıyor */}
+              <p>Hoş geldin, {studentName}!</p>
               <a href="#profile">Profile</a>
               <a href="#settings">Settings</a>
               <a href="#logout">Logout</a>
@@ -299,6 +219,7 @@ const StudentDetails = () => { // Component adını büyük harfle başlat
           )}
         </div>
       </div>
+
       <div className="dashboard">
         <button className="tile classes" onClick={() => openModal('classes')}>
           <h3>Classes</h3>
@@ -310,7 +231,7 @@ const StudentDetails = () => { // Component adını büyük harfle başlat
           <h3>Notes</h3>
         </button>
         <button className="tile finance" onClick={() => openModal('finance')}>
-          <h3>Finance</h3>
+          <h3>Enrolled Courses</h3>
         </button>
         <button className="tile payments" onClick={() => openModal('payments')}>
           <h3>Payments</h3>
@@ -334,12 +255,6 @@ const StudentDetails = () => { // Component adını büyük harfle başlat
         </div>
       </div>
 
-      {/* <div className="top-panel">
-        <ExitToAppOutlinedIcon fontSize="large" />
-        <p>{studentName}</p> {/* Giriş yapan kişinin adı */}
-      {/* </div>  */}
-
-      {/* Modal Pencereleri */}
       {activeModal && (
         <div className="modal-overlay">
           <div>
@@ -349,14 +264,76 @@ const StudentDetails = () => { // Component adını büyük harfle başlat
               </span>
               {activeModal === 'classes' && (
                 <div>
-                  <h2>Classes Information</h2>
-                  <p>Here are details about your classes.</p>
+                  <div>
+                    {message && (
+                      <div className='message-container'>
+                        <p className='message'>{message}</p>
+                        <button className='ok-button' onClick={() => setMessage('')}>
+                          Ok
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                  <table className="table-container">
+                    <thead>
+                      <tr>
+                        <th>Course ID</th>
+                        <th>Course Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {courses.map((course) => (
+                        <tr key={course.CourseID}>
+                          <td>{course.CourseID}</td>
+                          <td>{course.CourseName}</td>
+                          <td>{course.Description}</td>
+                          <td>
+                            <button onClick={() => handleClick(course.CourseName, course.CourseID)}>
+                              Add
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               )}
               {activeModal === 'grades' && (
                 <div>
-                  <h2>Grades Information</h2>
-                  <p>Here are your grades details.</p>
+                  <table className="table-container">
+                    <thead>
+                      <tr>
+                        <th colSpan="4">Grades Information</th>
+                      </tr>
+                      <tr>
+                        <th>Course ID</th>
+                        <th>Course Name</th>
+                        <th>Midterm</th>
+                        <th>Final</th>
+                        <th>instructor</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {coursesList.map((course) => (
+                        <tr key={course.courseID}>
+                          <td>{course.courseID}</td>
+                          <td>{course.courseName}</td>
+                          <td>{course.midterm}</td>
+                          <td>{course.final_exam}</td>
+                          <td>{course.instructor}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colSpan="4" style={{ textAlign: 'center', padding: '10px' }}>
+                          <button onClick={handleClickAddButton}>Add Course</button>
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
                 </div>
               )}
               {activeModal === 'notes' && (
@@ -366,9 +343,39 @@ const StudentDetails = () => { // Component adını büyük harfle başlat
                 </div>
               )}
               {activeModal === 'finance' && (
-                <div>
-                  <h2>Finance Information</h2>
-                  <p>Here are details about your financial status.</p>
+                <div>                                 
+                  <table className="table-container">
+                    <thead>
+                      <tr>
+                        <th colSpan="4">Your Enrolled Courses</th>
+                      </tr>
+                      <tr>
+                        <th>Course ID</th>
+                        <th>Course Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {coursesList.map((course) => (
+                        <tr key={course.courseID}>
+                          <td>{course.courseID}</td>
+                          <td>{course.courseName}</td>
+                          <td>{course.description}</td>
+                          <td>
+                            <button onClick={() => handleDelete(course.courseID)}>Delete</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colSpan="4" style={{ textAlign: 'center', padding: '10px' }}>
+                          <button onClick={handleClickAddButton}>Add Course</button>
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
                 </div>
               )}
               {activeModal === 'payments' && (
@@ -399,10 +406,8 @@ const StudentDetails = () => { // Component adını büyük harfle başlat
           </div>
         </div>
       )}
-
-
     </>
   );
 };
 
-export default StudentDetails; // Export edilen isim de büyük harfle başlamalı
+export default StudentDetails;

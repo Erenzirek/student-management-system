@@ -24,7 +24,7 @@ body {
     margin: 50px auto;
     justify-content: center;
     width: 100%;
-    max-width: 500px;
+    max-width: 400px; /* Ekran genişliğine göre sınırlama */
 }
 
 /* Giriş formu kutusu */
@@ -68,7 +68,7 @@ body {
     width: 100%;
     padding: 12px;
     border-radius: 5px;
-    border: 2px solid #ddd;
+    border: 2px solid #fd0000;
     margin-bottom: 15px;
     font-size: 16px;
     box-sizing: border-box;
@@ -85,7 +85,7 @@ body {
     font-weight: bolder;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 1s ease-in-out;
+    transition: background-color 0.3s ease;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
@@ -110,7 +110,7 @@ body {
 /* Giriş kutusuna hover olduğunda, Sign up bağlantısının da rengi değişsin */
 .Login-Box:hover .signup-link {
     text-decoration: none; /* Hover durumunda alt çizgi görünmeyecek */
-    color: greenyellow;
+    color: rgb(255, 208, 0);
 }
 
 /* Sign up metninin stili */
@@ -118,4 +118,47 @@ body {
     color: black;
     font-weight: bolder;
     margin-top: 20px;
+}
+
+/* 375x677 piksel için responsive tasarım */
+@media (max-width: 390x) and (max-height: 844px) {
+    .Login-Container {
+        margin: 20px auto;
+        padding: 10px;
+    }
+
+    .Login-Box {
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: none; /* Küçük ekranlarda gölgeyi kaldırabilirsiniz */
+        border: 1px solid #bbb;
+    }
+
+    .Login-Box h1 {
+        font-size: 20px;
+    }
+
+    .Login-Box input[type="email"],
+    .Login-Box input[type="password"] {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .Login-Box button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .Login-Title {
+        font-size: 28px;
+        margin-top: 85px;
+    }
+
+    .tosignin {
+        font-size: 12px;
+    }
+
+    .signup-link {
+        font-size: 14px;
+    }
 }

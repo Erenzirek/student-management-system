@@ -1,59 +1,122 @@
-body{
-    background-color:#2A363B;
+/* Base styles */
+body {
+    background-color: #2A363B;
+    margin: 0;
+    padding: 0;
 }
 
-.Welcome-Message{
+.Welcome-Message {
     font-size: 30px;
     font-weight: bolder;
     color: white;
     text-align: center;
-    margin: 100px auto;
+    margin: 50px auto;
+    padding: 0;
 }
-.Home-Container{
+
+.Home-Container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 100px auto;
     justify-content: center;
     text-align: center;
+    margin: 50px auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    gap: 40px;
 }
 
 .Container-Box {
     width: 300px;
     height: 180px;
     background-color: white;
-    margin-right: 40px; /* İki kutu arasında 20 piksel sağ boşluk */
     border-radius: 18px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+                rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+                rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     border: 2px solid white;
     padding: 12px;
-    transition: all ease 2s;
+    transition: all ease 0.3s;
 }
 
 .Container-Box:hover {
-    background-color:rgb(87, 0, 228);
+    background-color: rgb(87, 0, 228);
     border: 2px solid rgb(87, 0, 228);
 }
-.SchoolIcon{
+
+.Container-Box:hover h1,
+.Container-Box:hover p {
+    color: white;
+}
+
+.SchoolIcon {
     font-size: 35px;
 }
 
-.Container-Box h1{
+.Container-Box h1 {
     color: black;
     font-weight: bolder;
     font-size: 20px;
     padding: 8px;
+    margin: 0;
 }
 
-.Container-Box p{
+.Container-Box p {
     color: black;
     font-weight: bolder;
     font-size: 14px;
     font-style: oblique;
     padding: 8px;
+    margin: 0;
 }
 
+/* Tablet Media Query */
+@media screen and (max-width: 1024px) {
+    .Welcome-Message {
+        font-size: 24px;
+        margin: 30px auto;
+    }
+    
+    .Home-Container {
+        margin: 30px auto;
+    }
+    
+    .Container-Box {
+        width: 280px;
+        height: 170px;
+    }
+}
 
-.Container-Box:last-child {
-    margin-right: 0; /* Son kutuya boşluk eklenmez */
+/* Mobile Media Query */
+@media screen and (max-width: 768px) {
+    .Welcome-Message {
+        font-size: 20px;
+        margin: 20px auto;
+    }
+    
+    .Home-Container {
+        flex-direction: column;
+        gap: 20px;
+        margin: 20px auto;
+    }
+    
+    .Container-Box {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        min-height: 160px;
+        margin: 0;
+    }
+    
+    .SchoolIcon {
+        font-size: 30px;
+    }
+    
+    .Container-Box h1 {
+        font-size: 18px;
+    }
+    
+    .Container-Box p {
+        font-size: 13px;
+    }
 }

@@ -427,7 +427,7 @@ body {
     width: 1000px;
     height: 200px;
     background-color: #2A363B;
-    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset; 
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
     border-radius: 18px;
     border: 2px solid #2A363B;
     display: flex;
@@ -436,9 +436,9 @@ body {
     align-items: start;
     margin: 20px auto;
     position: absolute;
-    left: 300px;
-    top: 10px;
-    margin-top: 150px;
+    left: 327px;
+    top: -51px;
+    margin-top: 165px;
 }
 
 .date-panel{
@@ -483,8 +483,8 @@ body {
     width: 300px;
     align-content: center;
     position: absolute;
-    left: 330px;
-    top: 391px;
+    left: 325px;
+    top: 339px;
 }
 
   .tile {
@@ -745,16 +745,17 @@ body {
     z-index: 1000;
 }
 
-.modal-content {
-    background-color: blueviolet; /* Matches theme */
+/* .modal-content {
+    background-color: #2A363B;
     padding: 20px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
     color: white;
-    width: 400px;
+    width: 1063px;
+    height: 550px;
     text-align: center;
-    animation: slide-down 0.3s ease-out; /* Slide down animation */
-}
+    animation: slide-down 0.3s ease-out;
+} */
 
 /* Animation for modal */
 @keyframes slide-down {
@@ -808,6 +809,68 @@ body {
     padding: 0;
     height: 100vh;
     overflow: hidden;
+}
+
+.table-container {
+    width: 100%; /* Tablonun genişliği */
+    margin-top: 10px;
+    border-collapse: collapse; /* Hücre sınırlarını birleştir */
+    background-color: white; /* Beyaz arka plan */
+    font-size: 118%; /* Yazı boyutu */
+    border-radius: 8px; /* Köşeleri yuvarlat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    overflow: hidden; /* Taşmaları gizle */
+}
+
+.table-container th {
+    background-color: #f4f4f4; /* Başlık arka plan rengi */
+    font-size: 1.5rem; /* Başlık yazı boyutu */
+    padding: 10px; /* Hücre iç boşluk */
+    text-align: center; /* Ortala */
+    color: black; /* Yazı rengi */
+    border: 1px solid #ddd; /* Hücre kenarlığı */
+}
+
+.table-container td {
+    padding: 8px; /* Hücre iç boşluk */
+    text-align: center; /* Sol hizala */
+    color: black; /* Yazı rengi */
+    border: 1px solid #ddd; /* Hücre kenarlığı */
+}
+
+.table-container tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternatif satır arka planı */
+}
+
+.table-container tr:hover {
+    background-color: #f1f1f1; /* Üzerine gelindiğinde arka plan rengi */
+}
+
+.table-container button {
+    padding: 5px 10px; /* Buton iç boşluk */
+    background-color: #ff4c4c; /* Buton arka plan rengi */
+    color: #fff; /* Yazı rengi */
+    border: none; /* Kenarlıkları kaldır */
+    cursor: pointer; /* İmleç işareti */
+    border-radius: 4px; /* Köşeleri yuvarlat */
+    transition: background-color 0.3s ease; /* Geçiş animasyonu */
+}
+
+.table-container button:hover {
+    background-color: #e63939; /* Hover durumunda daha koyu kırmızı */
+}
+
+.table-container tfoot button {
+    padding: 10px 20px; /* Buton iç boşluk */
+    background-color: #4CAF50; /* Yeşil arka plan rengi */
+    color: #fff; /* Yazı rengi */
+    border: none; /* Kenarlıkları kaldır */
+    cursor: pointer; /* İmleç işareti */
+    border-radius: 4px; /* Köşeleri yuvarlat */
+}
+
+.table-container tfoot button:hover {
+    background-color: #3e8e41; /* Hover durumunda koyu yeşil */
 }
 
   
