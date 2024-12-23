@@ -23,7 +23,7 @@ Here are some screenshots of the project in action:
 
 ### Student Dashboard
 
-![Student Dashboard](images/student-dashboard.png)
+![Student Dashboard](images/student-panel.png)
 
 ### Teacher Dashboard
 
