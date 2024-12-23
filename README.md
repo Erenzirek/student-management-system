@@ -27,7 +27,7 @@ Here are some screenshots of the project in action:
 
 ### Teacher Dashboard
 
-![Teacher Dashboard](images/teacher-dashboard.png)
+![Teacher Dashboard](images/student-panel.jpg)
 
 ### Course Management
 

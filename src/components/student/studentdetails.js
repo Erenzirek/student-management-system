@@ -250,8 +250,8 @@ const StudentDetails = () => {
       <div className="welcome-panel-container">
         <div className="date-panel">September/5/2023</div>
         <div className="welcome-message">
-          <p className="welcome-back">Welcome back, {studentName}</p>
-          <p className="bottom-sentence">Always stay updated in your student portal</p>
+          <div><p className="welcome-back">Welcome back, {studentName}</p></div>
+          <div><p className="bottom-sentence">Always stay updated in your student portal</p></div>
         </div>
       </div>
 
