@@ -19,7 +19,7 @@ Here are some screenshots of the project in action:
 
 ### Login Screen
 
-![Login Screen](components/student/images/studentLogin.jpg)
+![Login Screen](studentLogin.jpg)
 
 ### Student Dashboard
 
