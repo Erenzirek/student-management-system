@@ -46,7 +46,6 @@ Here are some screenshots of the project in action:
 - **Database:** MongoDB (Optional)
 - **CSS Framework:** Bootstrap
 - **Authentication:** JWT (Optional)
-- **State Management:** React Context API or Redux
 
 ## Getting Started
 
